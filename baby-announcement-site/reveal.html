@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Surprise Reveal!</title>
+  <title>Surprise Reveal</title>
   <style>
-    /* Body Styles */
     body {
       margin: 0;
       padding: 0;
@@ -20,17 +19,15 @@
       color: #fff;
     }
 
-    /* Container for the Message */
-    .reveal-container {
+    .container {
       background: rgba(255, 255, 255, 0.8);
       padding: 30px;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      max-width: 500px;
-      backdrop-filter: blur(10px); /* Makes background blur behind the container */
+      max-width: 400px;
+      backdrop-filter: blur(10px);
     }
 
-    /* Heading */
     h1 {
       color: #ff6f91;
       font-size: 2.5rem;
@@ -38,65 +35,87 @@
       font-weight: 700;
     }
 
-    /* Baby Image */
-    .baby-image {
-      width: 80%;
-      border-radius: 15px;
-      margin-top: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    p {
+      color: #ff6f91;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
     }
 
-    /* Message Styling */
     .message {
+      font-size: 1.5rem;
       margin-top: 20px;
-      font-size: 1.4rem;
       color: #2e7d32;
       font-weight: bold;
       animation: fadeIn 1.2s ease forwards;
     }
 
-    /* Animation for Fade In */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Additional Styling for Mobile */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
+    img {
+      width: 80%;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
 
-      .reveal-container {
-        padding: 20px;
-      }
-
-      .message {
-        font-size: 1.2rem;
-      }
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 999;
     }
   </style>
 </head>
 <body>
-  <div class="reveal-container">
-    <h1>It's Official! 🎉</h1>
-    <p class="message">
-      🎉 <span style="font-size: 1.4rem; font-weight: bold;">Hey <span id="nameDisplay"></span>, you're about to be a super cool <span id="relationDisplay" style="color: #ff6f91;"></span>! 🍼✨<br> 
-      We’re welcoming a new little sunshine into our lives soon! 🌟👶<br> 
-      Get ready for endless giggles, adorable moments, and all the love you can handle!
-    </p>
-    <img class="baby-image" src="https://www.w3schools.com/w3images/baby.jpg" alt="Baby Image" />
+  <div class="container">
+    <h1>Big News!</h1>
+    <p>Here’s the big surprise…</p>
+    <div class="message" id="message"></div>
+    <img src="https://www.w3schools.com/w3images/fjords.jpg" alt="Baby Image" />
+    <canvas id="confettiCanvas" class="confetti"></canvas>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
-    // Get the URL parameters to retrieve the name and relation passed from the first page
+    // Get the query parameters from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const name = urlParams.get('name');
     const relation = urlParams.get('relation');
 
-    // Display the values in the page
-    document.getElementById('nameDisplay').innerText = name || 'Someone';
-    document.getElementById('relationDisplay').innerText = relation || 'Relative';
+    const messageElement = document.getElementById("message");
+    messageElement.innerHTML = `🎉 Hey ${name}, you're about to be an awesome ${relation} because...<br> 
+      We’re having a baby! 👶💖 Get ready for endless joy and beautiful moments! 🎉`;
+
+    // Confetti!
+    const duration = 3 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function() {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      confetti(Object.assign({}, defaults, {
+        particleCount: 50,
+        origin: {
+          x: randomInRange(0.1, 0.9),
+          y: Math.random() - 0.2
+        }
+      }));
+    }, 250);
   </script>
 </body>
 </html>
