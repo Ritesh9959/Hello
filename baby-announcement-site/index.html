@@ -38,6 +38,14 @@
       font-weight: 700;
     }
 
+    /* Instruction Text */
+    p {
+      color: #ffcc00; /* Yellow Color */
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
     /* Input and Select Fields */
     input, select {
       width: 90%;
@@ -119,9 +127,9 @@
       <option>Grandpa</option>
       <option>Friend</option>
       <option>Sibling</option>
+      <option>Other</option>
       <option>Sister-in-law</option>
       <option>Brother-in-law</option>
-      <option>Other</option>
     </select>
     <button onclick="showMessage()">Reveal Surprise</button>
     <div class="message" id="message"></div>
@@ -141,36 +149,4 @@
       }
 
       const message = document.getElementById("message");
-      message.innerHTML = `🎉 <span style="font-size: 1.4rem; font-weight: bold;">Hey ${name}, you're about to be a super cool <span style="color: #ff6f91;">${relation}</span>... </span><br> 
-      <span style="font-size: 1.2rem;">because... we’ve got some BIG news! 🍼✨<br> 
-      We’re welcoming a new little sunshine into our lives soon! 🌟👶<br> 
-      Get ready for endless giggles, adorable moments, and all the love you can handle!</span>`;
-
-      // Confetti!
-      const duration = 3 * 1000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
-
-      function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
-      }
-
-      const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
-        }
-
-        confetti(Object.assign({}, defaults, {
-          particleCount: 50,
-          origin: {
-            x: randomInRange(0.1, 0.9),
-            y: Math.random() - 0.2
-          }
-        }));
-      }, 250);
-    }
-  </script>
-</body>
-</html>
+      message.innerHTML = `🎉 <span style="font-size: 1.4rem; font-weight: b
