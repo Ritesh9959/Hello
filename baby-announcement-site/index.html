@@ -4,49 +4,64 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>We’ve Got Big News!</title>
+  <!-- Import Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
-    /* Body Styles */
+    /* Global Styles */
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: url('https://www.w3schools.com/w3images/fjords.jpg') no-repeat center center fixed;
-      background-size: cover;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #f9f7f7, #d4e6f1);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      text-align: center;
-      color: #fff;
+      color: #333;
+      overflow: hidden;
+      background-size: cover;
     }
 
-    /* Container for Form */
+    /* Container Styling */
     .container {
-      background: rgba(255, 255, 255, 0.8);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      max-width: 400px;
-      backdrop-filter: blur(10px); /* Makes background blur behind the container */
+      background: rgba(255, 255, 255, 0.85);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      max-width: 450px;
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .container:hover {
+      transform: scale(1.03);
     }
 
     /* Heading */
     h1 {
       color: #ff6f91;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 20px;
-      font-weight: 700;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     /* Input and Select Fields */
     input, select {
       width: 90%;
       padding: 12px;
-      margin: 12px 0;
-      border-radius: 8px;
+      margin: 15px 0;
+      border-radius: 10px;
       border: 1px solid #ccc;
       font-size: 1rem;
-      background-color: #f0f8ff;
+      background-color: #e0f7fa;
+      transition: border 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #ff6f91;
     }
 
     /* Button Styles */
@@ -56,24 +71,27 @@
       border: none;
       color: white;
       font-size: 1.2rem;
-      border-radius: 8px;
+      border-radius: 30px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.2s;
     }
 
     button:hover {
       background-color: #ff3b6f;
+      transform: translateY(-3px);
     }
 
     /* Success Message Styling */
     .message {
-      margin-top: 20px;
-      font-size: 1.3rem;
+      margin-top: 30px;
+      font-size: 1.5rem;
       color: #2e7d32;
-      animation: fadeIn 1.2s ease forwards;
+      font-weight: 500;
+      animation: fadeIn 1s ease-in-out;
     }
 
-    /* Fade-in Animation */
+    /* Keyframe for fade-in animation */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -90,84 +108,7 @@
       z-index: 999;
     }
 
-    /* Additional styling for mobile responsiveness */
+    /* Mobile Responsiveness */
     @media (max-width: 600px) {
       h1 {
         font-size: 2rem;
-      }
-
-      .container {
-        padding: 20px;
-      }
-
-      input, select, button {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>We Have Something to Share!</h1>
-    <p>Please enter your name and your relation:</p>
-    <input type="text" id="name" placeholder="Your Name" />
-    <select id="relation">
-      <option value="">Select Relation</option>
-      <option>Uncle</option>
-      <option>Aunt</option>
-      <option>Grandma</option>
-      <option>Grandpa</option>
-      <option>Friend</option>
-      <option>Sibling</option>
-      <option>Other</option>
-      <option>Sister-in-law</option>
-      <option>Brother-in-law</option>
-    </select>
-    <button onclick="showMessage()">Reveal Surprise</button>
-    <div class="message" id="message"></div>
-  </div>
-
-  <canvas id="confettiCanvas" class="confetti"></canvas>
-
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <script>
-    function showMessage() {
-      const name = document.getElementById("name").value.trim();
-      const relation = document.getElementById("relation").value;
-
-      if (!name || !relation) {
-        alert("Please fill out both fields.");
-        return;
-      }
-
-      const message = document.getElementById("message");
-      message.innerHTML = `🎉 ${name}, you're going to be a <strong>${relation}</strong>... because we're having a baby! 👶❤️`;
-
-      // Confetti!
-      const duration = 3 * 1000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
-
-      function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
-      }
-
-      const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
-        }
-
-        confetti(Object.assign({}, defaults, {
-          particleCount: 50,
-          origin: {
-            x: randomInRange(0.1, 0.9),
-            y: Math.random() - 0.2
-          }
-        }));
-      }, 250);
-    }
-  </script>
-</body>
-</html>
