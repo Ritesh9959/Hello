@@ -1,34 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>We’ve Got Big News!</title>
-  <style>
-    /* Global Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<script>
+  function showMessage() {
+    const name = document.getElementById("name").value.trim();
+    const relation = document.getElementById("relation").value;
+
+    if (!name || !relation) {
+      alert("Please fill out both fields.");
+      return;
     }
 
-    /* Body Styles */
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: url('https://www.w3schools.com/w3images/fjords.jpg') no-repeat center center fixed;
-      background-size: cover;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      overflow: hidden;
+    const message = document.getElementById("message");
+    message.innerHTML = `🎉 <span style="font-size: 1.4rem; font-weight: bold;">Hey ${name}, you're about to be a super cool <span style="color: #ff6f91;">${relation}</span>... </span><br> 
+    <span style="font-size: 1.2rem;">because... we’ve got some BIG news! 🍼✨<br> 
+    We’re welcoming a new little sunshine into our lives soon! 🌟👶<br> 
+    Get ready for endless giggles, adorable moments, and all the love you can handle!</span>`;
+
+    // Confetti!
+    const duration = 3 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
     }
 
-    /* Container Styles */
-    .container {
-      background: rgba(255, 255, 255, 0.85);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-      width: 100
+    const interval = setInterval(function() {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      confetti(Object.assign({}, defaults, {
+        particleCount: 50,
+        origin: {
+          x: randomInRange(0.1, 0.9),
+          y: Math.random() - 0.2
+        }
+      }));
+    }, 250);
+  }
+</script>
