@@ -3,85 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>We’ve Got Big News!</title>
+  <title>Big News Reveal!</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: url('https://www.w3schools.com/w3images/fjords.jpg') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      color: #fff;
-    }
-
-    .container {
-      background: rgba(255, 255, 255, 0.8);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      max-width: 400px;
-      backdrop-filter: blur(10px);
-    }
-
-    h1 {
-      color: #ff6f91;
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
-
-    p {
-      color: #ff6f91;
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    input, select {
-      width: 90%;
-      padding: 12px;
-      margin: 12px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      background-color: #f0f8ff;
-    }
-
-    button {
-      padding: 15px 25px;
-      background-color: #ff6f91;
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #ff3b6f;
-    }
-
-    .confetti {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 999;
-    }
+    /* Add styles similar to the previous design */
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>We Have Something to Share!</h1>
+    <h1>We Have Some Exciting News!</h1>
     <p>Please enter your name and your relation:</p>
+
+    <!-- Input Fields -->
     <input type="text" id="name" placeholder="Your Name" />
     <select id="relation">
       <option value="">Select Relation</option>
@@ -91,26 +23,30 @@
       <option>Grandpa</option>
       <option>Friend</option>
       <option>Sibling</option>
-      <option>Other</option>
       <option>Sister-in-law</option>
       <option>Brother-in-law</option>
     </select>
-    <button onclick="revealMessage()">Reveal Surprise</button>
+
+    <!-- Button to Reveal Message -->
+    <button onclick="showMessage()">Reveal Surprise</button>
   </div>
 
   <script>
-    function revealMessage() {
+    // Handle the form and redirect to the reveal page
+    function showMessage() {
       const name = document.getElementById("name").value.trim();
       const relation = document.getElementById("relation").value;
 
       if (!name || !relation) {
-        alert("Please fill out both fields.");
+        alert("Please fill out both fields!");
         return;
       }
 
-      // Create a URL with query parameters for the name and relation
-      const messageUrl = `reveal.html?name=${encodeURIComponent(name)}&relation=${encodeURIComponent(relation)}`;
-      window.location.href = messageUrl;
+      // Construct the URL with query parameters
+      const revealUrl = `reveal.html?name=${encodeURIComponent(name)}&relation=${encodeURIComponent(relation)}`;
+      
+      // Redirect to the reveal page with the name and relation
+      window.location.href = revealUrl;
     }
   </script>
 </body>
