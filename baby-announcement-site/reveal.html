@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Quicksand', sans-serif;
-      background: url('https://www.google.com/search?q=cute+baby+pictures+for+a+web+site+for+pregnancy+reveal&sca_esv=f8cdf1719aa816fb&udm=2&biw=711&bih=626&sxsrf=AE3TifPixU3en6o9JyPkoI3zdH16Qntg4g%3A1751171042202&ei=4r9gaKmRDPvV5NoP_O3EsQc&ved=0ahUKEwipiqW_5JWOAxX7KlkFHfw2MXYQ4dUDCBI&uact=5&oq=cute+baby+pictures+for+a+web+site+for+pregnancy+reveal&gs_lp=EgNpbWciNmN1dGUgYmFieSBwaWN0dXJlcyBmb3IgYSB3ZWIgc2l0ZSBmb3IgcHJlZ25hbmN5IHJldmVhbEjIVlD5A1jcU3ABeACQAQCYAUygAe4CqgEBNbgBA8gBAPgBAZgCAKACAJgDAIgGAZIHAKAH4QGyBwC4BwDCBwDIBwA&sclient=img#vhid=5BZMlJ6ZOUQOXM&vssid=mosaic') no-repeat center center fixed;
+      background: url('https://www.w3schools.com/w3images/fjords.jpg') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -40,7 +40,9 @@
 
     /* Baby Image */
     .baby-image {
-      width: 80%;
+      width: 60%; /* Adjust the image size to 60% of the container width */
+      max-width: 400px; /* Set a maximum width for the image */
+      height: auto; /* Maintain the aspect ratio */
       border-radius: 15px;
       margin-top: 20px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -51,52 +53,4 @@
       margin-top: 20px;
       font-size: 1.4rem;
       color: #2e7d32;
-      font-weight: bold;
-      animation: fadeIn 1.2s ease forwards;
-    }
-
-    /* Animation for Fade In */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Additional Styling for Mobile */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      .reveal-container {
-        padding: 20px;
-      }
-
-      .message {
-        font-size: 1.2rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="reveal-container">
-    <h1>It's Official! 🎉</h1>
-    <p class="message">
-      🎉 <span style="font-size: 1.4rem; font-weight: bold;">Hey <span id="nameDisplay"></span>, you're about to be a super cool <span id="relationDisplay" style="color: #ff6f91;"></span>! 🍼✨<br> 
-      We’re welcoming a new little sunshine into our lives soon! 🌟👶<br> 
-      Get ready for endless giggles, adorable moments, and all the love you can handle!
-    </p>
-    <img class="baby-image" src="https://www.w3schools.com/w3images/baby.jpg" alt="Baby Image" />
-  </div>
-
-  <script>
-    // Get the URL parameters to retrieve the name and relation passed from the first page
-    const urlParams = new URLSearchParams(window.location.search);
-    const name = urlParams.get('name');
-    const relation = urlParams.get('relation');
-
-    // Display the values in the page
-    document.getElementById('nameDisplay').innerText = name || 'Someone';
-    document.getElementById('relationDisplay').innerText = relation || 'Relative';
-  </script>
-</body>
-</html>
+      font-weight: bol
