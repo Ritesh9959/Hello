@@ -15,4 +15,93 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      h
+      height: 100vh;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* Container for Form */
+    .container {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 400px;
+      backdrop-filter: blur(10px); /* Makes background blur behind the container */
+    }
+
+    /* Heading */
+    h1 {
+      color: #ff6f91;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    /* Instruction Text - Updated */
+    p {
+      color: #2c3e50; /* Dark color for visibility */
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    /* Input and Select Fields */
+    input, select {
+      width: 90%;
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      background-color: #f0f8ff;
+    }
+
+    /* Button Styles */
+    button {
+      padding: 15px 25px;
+      background-color: #ff6f91;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff3b6f;
+    }
+
+    /* Success Message Styling */
+    .message {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      color: #2e7d32;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    /* Fade-in Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Confetti Styling */
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Additional styling for mobile responsiveness */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .container {
