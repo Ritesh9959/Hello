@@ -4,23 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>We’ve Got Big News!</title>
-  <!-- Import Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div style="text-align: center; margin-top: 50px;">
+    <h1>We Have Something to Share!</h1>
+    <p>Please enter your name and your relation:</p>
+    <input type="text" id="name" placeholder="Your Name" />
+    <select id="relation">
+      <option value="">Select Relation</option>
+      <option>Uncle</option>
+      <option>Aunt</option>
+      <option>Grandma</option>
+      <option>Grandpa</option>
+      <option>Friend</option>
+      <option>Sibling</option>
+      <option>Other</option>
+      <option>Sister-in-law</option>
+      <option>Brother-in-law</option>
+    </select>
+    <button onclick="showMessage()">Reveal Surprise</button>
+    <div id="message" style="margin-top: 20px; font-size: 1.5rem;"></div>
+  </div>
 
-  <style>
-    /* Global Styles */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom right, #f9f7f7, #d4e6f1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #333;
-      overflow: hidden;
+  <script>
+    function showMessage() {
+      const name = document.getElementById("name").value.trim();
+      const relation = document.getElementById("relation").value;
+
+      if (!name || !relation) {
+        alert("Please fill out both fields.");
+        return;
+      }
+
+      const message = document.getElementById("message");
+      message.innerHTML = `🎉 ${name}, you're going to be a <strong>${relation}</strong>... because we're having a baby! 👶❤️`;
     }
-
-    /* Container Styling */
-    .c
+  </script>
+</body>
+</html>
