@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>We’ve Got Big News!</title>
   <style>
-    /* Body Styles */
     body {
       margin: 0;
       padding: 0;
@@ -20,17 +19,15 @@
       color: #fff;
     }
 
-    /* Container for Form */
     .container {
       background: rgba(255, 255, 255, 0.8);
       padding: 30px;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       max-width: 400px;
-      backdrop-filter: blur(10px); /* Makes background blur behind the container */
+      backdrop-filter: blur(10px);
     }
 
-    /* Heading */
     h1 {
       color: #ff6f91;
       font-size: 2.5rem;
@@ -38,15 +35,13 @@
       font-weight: 700;
     }
 
-    /* Instruction Text */
     p {
-      color: #ff6f91; /* Change the color to dark pink */
+      color: #ff6f91;
       font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 20px;
     }
 
-    /* Input and Select Fields */
     input, select {
       width: 90%;
       padding: 12px;
@@ -57,7 +52,6 @@
       background-color: #f0f8ff;
     }
 
-    /* Button Styles */
     button {
       padding: 15px 25px;
       background-color: #ff6f91;
@@ -73,21 +67,6 @@
       background-color: #ff3b6f;
     }
 
-    /* Success Message Styling */
-    .message {
-      margin-top: 20px;
-      font-size: 1.3rem;
-      color: #2e7d32;
-      animation: fadeIn 1.2s ease forwards;
-    }
-
-    /* Fade-in Animation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Confetti Styling */
     .confetti {
       position: fixed;
       top: 0;
@@ -96,21 +75,6 @@
       height: 100vh;
       pointer-events: none;
       z-index: 999;
-    }
-
-    /* Additional styling for mobile responsiveness */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      .container {
-        padding: 20px;
-      }
-
-      input, select, button {
-        font-size: 0.9rem;
-      }
     }
   </style>
 </head>
@@ -131,15 +95,11 @@
       <option>Sister-in-law</option>
       <option>Brother-in-law</option>
     </select>
-    <button onclick="showMessage()">Reveal Surprise</button>
-    <div class="message" id="message"></div>
+    <button onclick="revealMessage()">Reveal Surprise</button>
   </div>
 
-  <canvas id="confettiCanvas" class="confetti"></canvas>
-
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
-    function showMessage() {
+    function revealMessage() {
       const name = document.getElementById("name").value.trim();
       const relation = document.getElementById("relation").value;
 
@@ -148,36 +108,9 @@
         return;
       }
 
-      const message = document.getElementById("message");
-      message.innerHTML = `🎉 <span style="font-size: 1.4rem; font-weight: bold;">Hey ${name}, you're about to be a super cool <span style="color: #ff6f91;">${relation}</span>... </span><br> 
-      <span style="font-size: 1.2rem;">because... we’ve got some BIG news! 🍼✨<br> 
-      We’re welcoming a new little sunshine into our lives soon! 🌟👶<br> 
-      Get ready for endless giggles, adorable moments, and all the love you can handle!</span>`;
-
-      // Confetti!
-      const duration = 3 * 1000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
-
-      function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
-      }
-
-      const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
-        }
-
-        confetti(Object.assign({}, defaults, {
-          particleCount: 50,
-          origin: {
-            x: randomInRange(0.1, 0.9),
-            y: Math.random() - 0.2
-          }
-        }));
-      }, 250);
+      // Create a URL with query parameters for the name and relation
+      const messageUrl = `reveal.html?name=${encodeURIComponent(name)}&relation=${encodeURIComponent(relation)}`;
+      window.location.href = messageUrl;
     }
   </script>
 </body>
